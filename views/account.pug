@@ -1,6 +1,29 @@
 extends layout
 
 block content
+  style.
+    .notification {
+      padding: 10px 15px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      animation: fadeIn 0.5s;
+    }
+    .error-notification {
+      background-color: #f8d7da;
+      color: #721c24;
+      border-left: 4px solid #dc3545;
+    }
+    .success-notification {
+      background-color: #d4edda;
+      color: #155724;
+      border-left: 4px solid #28a745;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
   .container-account
     h1 Thông Tin Tài Khoản
     .user-info
@@ -13,11 +36,11 @@ block content
 
     h2 Đổi Mật Khẩu
     if error
-      .error-message
-        p(style="color: red;") #{error}
+      .notification.error-notification
+        p #{error}
     if success 
-      .success-message
-        p(style="color: green;") #{success}
+      .notification.success-notification
+        p #{success}
     form(action="/account/change-password" method="POST")
       .form-group
         label(for="currentPassword") Mật khẩu hiện tại:

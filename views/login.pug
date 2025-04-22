@@ -5,14 +5,32 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Đăng nhập tài khoản
     link(rel='stylesheet', href='/stylesheets/login.css')
+    style.
+      .notification {
+        padding: 10px 15px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        animation: fadeIn 0.5s;
+      }
+      .error-notification {
+        background-color: #f8d7da;
+        color: #721c24;
+        border-left: 4px solid #dc3545;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
   body(class="bg-slate-200 h-screen flex items-center justify-center")
     .container
       .form-box
         h1 Đăng nhập tài khoản
+        
+        if error 
+          .notification.error-notification
+            p= error
+            
         form(method="post" action="/account/login")
-          if error 
-            p.error-message= error
-
           // Email
           .form-group
             label(for="email") Email
